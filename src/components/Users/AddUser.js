@@ -15,7 +15,7 @@ const AddUser = (props) => {
     setUserAgeInput(event.target.value);
   };
 
-  const addUserNameHandler = (event) => {
+  const addUserHandler = (event) => {
     event.preventDefault();
 
     const userInput = {
@@ -27,7 +27,7 @@ const AddUser = (props) => {
 
   return (
     <Card styleName={style.input}>
-      <form onSubmit={addUserNameHandler}>
+      <form onSubmit={addUserHandler}>
         <label htmlFor="username">Username</label>
         <input type="text" id="username" onInput={userNameHandler} />
         <label htmlFor="age">Age (Years)</label>
