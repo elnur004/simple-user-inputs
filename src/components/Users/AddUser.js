@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Card from '../UI/Card';
+import style from './AddUser.module.css';
 
 const AddUser = (props) => {
   const [userNameInput, setUserNameInput] = useState('');
@@ -24,7 +25,7 @@ const AddUser = (props) => {
   };
 
   return (
-    <Card>
+    <Card styleName={style.input}>
       <form onSubmit={addUserNameHandler}>
         <label htmlFor="username">Username</label>
         <input type="text" id="username" onInput={userNameHandler} />
