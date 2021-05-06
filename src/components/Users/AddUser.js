@@ -19,9 +19,15 @@ const AddUser = (props) => {
     event.preventDefault();
 
     const userInput = {
-      userName: userNameInput,
+      userName: userNameInput.trim(),
       userAge: +userAgeInput,
     };
+
+    if (!isNaN(userInput.userName) || userInput.userName === '')
+      return alert('Enter valid Username!');
+
+    if (userInput.userAge <= 0) return alert('Enter valid age (>0)!');
+
     console.log(userInput);
     setUserNameInput('');
     setUserAgeInput('');
