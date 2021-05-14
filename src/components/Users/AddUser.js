@@ -50,7 +50,7 @@ const AddUser = (props) => {
           value={userAgeInput}
           onInput={userAgeHandler}
         />
-        <Button />
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );
