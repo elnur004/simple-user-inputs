@@ -28,7 +28,7 @@ const AddUser = (props) => {
 
     if (userInput.userAge <= 0) return alert('Enter valid age (>0)!');
 
-    console.log(userInput);
+    console.log(userInput.userName, userInput.userAge);
     setUserNameInput('');
     setUserAgeInput('');
   };
@@ -41,14 +41,14 @@ const AddUser = (props) => {
           type="text"
           id="username"
           value={userNameInput}
-          onInput={userNameHandler}
+          onChange={userNameHandler}
         />
         <label htmlFor="age">Age (Years)</label>
         <input
           type="number"
           id="age"
           value={userAgeInput}
-          onInput={userAgeHandler}
+          onChange={userAgeHandler}
         />
         <Button type="submit">Add User</Button>
       </form>
