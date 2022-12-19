@@ -7,6 +7,7 @@ import classes from './AddUser.module.css';
 const AddUser = (props) => {
   const [userNameInput, setUserNameInput] = useState('');
   const [userAgeInput, setUserAgeInput] = useState('');
+  const [error, setError] = useState();
 
   const userNameHandler = (event) => {
     setUserNameInput(event.target.value);
@@ -19,10 +20,21 @@ const AddUser = (props) => {
   const addUserHandler = (event) => {
     event.preventDefault();
 
-    if (!isNaN(userNameInput) || userNameInput === '')
-      return alert('Enter valid Username!');
+    if (!isNaN(userNameInput) || userNameInput === '') {
+      setError({
+        title: 'Invalid input',
+        message: 'Please enter a valid name and age (non-empty values)',
+      });
+      return;
+    }
 
-    if (userAgeInput <= 0) return alert('Enter valid age (>0)!');
+    if (userAgeInput <= 0) {
+      setError({
+        title: 'Invalid age',
+        message: 'Please enter a valid age ( > 0 )',
+      });
+      return;
+    }
 
     props.onAddUsers(userNameInput.trim(), +userAgeInput);
     console.log(userNameInput.trim(), +userAgeInput);
@@ -32,7 +44,7 @@ const AddUser = (props) => {
 
   return (
     <div>
-      <ErrorModal title="Error has occured!" message="Something went wrong!" />
+      {error && <ErrorModal title={error.title} message={error.message} />}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
