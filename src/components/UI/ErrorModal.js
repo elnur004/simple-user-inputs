@@ -1,15 +1,15 @@
 import Card from './Card';
 import Button from './Button';
-import classes from './ErrorModal.modal.css';
+import classes from './ErrorModal.module.css';
 
-const ErrorModule = () => {
+const ErrorModal = (props) => {
   return (
     <Card className={classes.modal}>
       <header className={classes.header}>
-        <h2>Header</h2>
+        <h2>{props.title}</h2>
       </header>
       <div className={classes.content}>
-        <p>Error Message</p>
+        <p>{props.message}</p>
       </div>
       <footer className={classes.actions}>
         <Button>Okay</Button>
@@ -18,4 +18,4 @@ const ErrorModule = () => {
   );
 };
 
-export default ErrorModule;
+export default ErrorModal;

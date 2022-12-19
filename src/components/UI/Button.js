@@ -1,10 +1,10 @@
-import style from './Button.module.css';
+import classes from './Button.module.css';
 
 const Button = (props) => {
   return (
     <button
       type={props.type || 'button'}
-      className={style.button}
+      className={classes.button}
       onClick={props.onClick}
     >
       {props.children}
