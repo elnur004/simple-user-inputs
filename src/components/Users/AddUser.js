@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
 import classes from './AddUser.module.css';
 
 const AddUser = (props) => {
-  const [userNameInput, setUserNameInput] = useState('');
-  const [userAgeInput, setUserAgeInput] = useState('');
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
+  // IMPLEMENTED useRef INSTEAD
+
+  // const [userNameInput, setUserNameInput] = useState('');
+  // const [userAgeInput, setUserAgeInput] = useState('');
   const [error, setError] = useState();
 
-  const userNameHandler = (event) => {
-    setUserNameInput(event.target.value);
-  };
+  // const userNameHandler = (event) => {
+  //   setUserNameInput(event.target.value);
+  // };
 
-  const userAgeHandler = (event) => {
-    setUserAgeInput(event.target.value);
-  };
+  // const userAgeHandler = (event) => {
+  //   setUserAgeInput(event.target.value);
+  // };
 
   const addUserHandler = (event) => {
     event.preventDefault();
 
-    if (!isNaN(userNameInput) || userNameInput === '') {
+    const enteredUserName = nameInputRef.current.value;
+    const enteredUserAge = ageInputRef.current.value;
+
+    if (!isNaN(enteredUserName) || enteredUserName === '') {
       setError({
         title: 'Invalid input',
         message: 'Please enter a valid name and age (non-empty values)',
@@ -28,7 +36,7 @@ const AddUser = (props) => {
       return;
     }
 
-    if (userAgeInput <= 0) {
+    if (enteredUserAge <= 0) {
       setError({
         title: 'Invalid age',
         message: 'Please enter a valid age ( > 0 )',
@@ -36,10 +44,29 @@ const AddUser = (props) => {
       return;
     }
 
-    props.onAddUsers(userNameInput.trim(), +userAgeInput);
-    console.log(userNameInput.trim(), +userAgeInput);
-    setUserNameInput('');
-    setUserAgeInput('');
+    // if (!isNaN(userNameInput) || userNameInput === '') {
+    //   setError({
+    //     title: 'Invalid input',
+    //     message: 'Please enter a valid name and age (non-empty values)',
+    //   });
+    //   return;
+    // }
+    // if (userAgeInput <= 0) {
+    //   setError({
+    //     title: 'Invalid age',
+    //     message: 'Please enter a valid age ( > 0 )',
+    //   });
+    //   return;
+    // }
+
+    // props.onAddUsers(userNameInput.trim(), +userAgeInput);
+    // console.log(userNameInput.trim(), +userAgeInput);
+    // setUserNameInput('');
+    // setUserAgeInput('');
+    props.onAddUsers(enteredUserName.trim(), +enteredUserAge);
+    console.log(enteredUserName.trim(), +enteredUserAge);
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   };
 
   const errorHandler = () => {
@@ -61,15 +88,17 @@ const AddUser = (props) => {
           <input
             type="text"
             id="username"
-            value={userNameInput}
-            onChange={userNameHandler}
+            // value={userNameInput}
+            // onChange={userNameHandler}
+            ref={nameInputRef}
           />
           <label htmlFor="age">Age (Years)</label>
           <input
             type="number"
             id="age"
-            value={userAgeInput}
-            onChange={userAgeHandler}
+            // value={userAgeInput}
+            // onChange={userAgeHandler}
+            ref={ageInputRef}
           />
           <Button type="submit">Add User</Button>
         </form>
