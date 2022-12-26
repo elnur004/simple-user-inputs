@@ -61,10 +61,14 @@ const AddUser = (props) => {
 
     // props.onAddUsers(userNameInput.trim(), +userAgeInput);
     // console.log(userNameInput.trim(), +userAgeInput);
+
+    // Controlled(input components) way accessing the input value
     // setUserNameInput('');
     // setUserAgeInput('');
     props.onAddUsers(enteredUserName.trim(), +enteredUserAge);
     console.log(enteredUserName.trim(), +enteredUserAge);
+
+    // Uncontrolled(input components) way accessing the input value
     nameInputRef.current.value = '';
     ageInputRef.current.value = '';
   };
